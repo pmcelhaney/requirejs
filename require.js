@@ -1546,14 +1546,12 @@ var require, define;
 
         //If in IE 6-8 and hit an anonymous define() call, do the interactive
         //work.
-        if (useInteractive) {
+        if (useInteractive && !name) {
             node = currentlyAddingScript || getInteractiveScript();
             if (!node) {
                 return req.onError(new Error("ERROR: No matching script interactive for " + callback));
             }
-            if (!name) {
-                name = node.getAttribute("data-requiremodule");
-            }
+            name = node.getAttribute("data-requiremodule");
             context = contexts[node.getAttribute("data-requirecontext")];
         }
 
